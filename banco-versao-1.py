@@ -9,7 +9,6 @@ valor_depositado = 0
 valor_saque = 0
 saques_diarios = 0
 LIMITE_MAXIMO = 500
-extrato = saque_extrato and deposito_extrato
 while True:
 
     menu = input('''Bem vindo ao banco! Digite:
@@ -43,9 +42,10 @@ while True:
         else:
             print('Limite de saques diários atingido.')
     elif menu == 'e':
+      extrato = deposito_extrato + saque_extrato
       print('################## EXTRATO ##################')
       print(f'Não foram realizadas movimentações.\n Saldo: R$ {conta:.2f}' if not extrato else extrato)
-      print(f'{deposito_extrato}{saque_extrato}')
+      print(extrato)
 
     elif menu == 'q':
         print('Obrigado por utilizar os serviços de nosso banco!')
