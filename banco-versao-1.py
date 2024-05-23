@@ -5,8 +5,7 @@ q = str
 saque_extrato = ""
 deposito_extrato = ""
 conta = 0
-valor_depositado = 0
-valor_saque = 0
+valor = 0
 saques_diarios = 0
 LIMITE_MAXIMO = 500
 while True:
@@ -19,25 +18,25 @@ while True:
  ''')
 
     if menu == 'd' :
-        valor_depositado = float(input('Qual valor deseja depositar? '))
-        if valor_depositado >= 0.1:
-            conta += valor_depositado
-            deposito_extrato += f"Depósito no valor de R$ {valor_depositado:.2f}\n"
+        valor = float(input('Qual valor deseja depositar? '))
+        if valor >= 0.1:
+            conta += valor
+            deposito_extrato += f"Depósito no valor de R$ {valor:.2f}\n"
             print('Depósito realizado com sucesso!')
         else:
             print('O valor informado é inválido')
 
     elif menu == 's':
         if saques_diarios < 3:
-            valor_saque = float(input('Qual valor deseja sacar? '))
-            if valor_saque >= 0.1 and valor_saque <= LIMITE_MAXIMO and conta - valor_saque >= 0:
+            valor = float(input('Qual valor deseja sacar? '))
+            if valor >= 0.1 and valor <= LIMITE_MAXIMO and conta - valor >= 0:
                 print('Saque realizado com sucesso')
-                conta -= valor_saque
+                conta -= valor
                 saques_diarios += 1
-                saque_extrato += f"Saque no valor de R$ {valor_saque:.2f}\n"
-            elif valor_saque > LIMITE_MAXIMO:
+                saque_extrato += f"Saque no valor de R$ {valor:.2f}\n"
+            elif valor > LIMITE_MAXIMO:
                 print('Limite máximo de 500 reais por saque. Tente novamente.')
-            elif conta - valor_saque < 0:
+            elif conta - valor < 0:
                 print('Saldo insuficiente para saque')
         else:
             print('Limite de saques diários atingido.')
