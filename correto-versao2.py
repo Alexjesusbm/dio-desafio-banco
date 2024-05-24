@@ -11,7 +11,7 @@ def sacar(*, saque_extrato, conta, valor, saques_diarios, LIMITE_MAXIMO):
             print('Saldo insuficiente para saque')
     else:
         print('Limite de saques diários atingido.')
-
+    
     return saque_extrato, conta, saques_diarios
 
 def depositar(conta, valor, deposito_extrato):
@@ -24,11 +24,10 @@ def depositar(conta, valor, deposito_extrato):
     
     return conta, deposito_extrato
 
-def exibir_extrato(conta, *, extrato, saque_extrato, deposito_extrato):
-    extrato = deposito_extrato + saque_extrato
+def exibir_extrato(conta, *, extrato):
     print('################## EXTRATO ##################')
     print(f'Não foram realizadas movimentações.\n Saldo: R$ {conta:.2f}' if not extrato else extrato)
-    print(extrato)
+    print(f'Saldo: R$ {conta:.2f}')
     return conta, extrato
 
 def cadastrar_usuario(lista_usuarios):
@@ -41,7 +40,7 @@ def cadastrar_usuario(lista_usuarios):
         if usuario['cpf'] == cpf:
             print("Erro: CPF já cadastrado.")
             return None
-
+    
     usuario = {
         "nome": nome,
         "data_nascimento": data_nascimento,
@@ -58,7 +57,7 @@ saque_extrato = ""
 deposito_extrato = ""
 saques_diarios = 0
 LIMITE_MAXIMO = 500
-lista_usuarios = [] 
+lista_usuarios = []
 
 valor = float(input('Qual valor deseja sacar? '))
 saque_extrato, conta, saques_diarios = sacar(saque_extrato=saque_extrato, conta=conta, valor=valor, saques_diarios=saques_diarios, LIMITE_MAXIMO=LIMITE_MAXIMO)
