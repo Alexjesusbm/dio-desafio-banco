@@ -1,13 +1,9 @@
-d = str
-s = str
-e = str
-q = str
-saque_extrato = ""
-deposito_extrato = ""
+extrato = ""
 conta = 0
 valor = 0
 saques_diarios = 0
 LIMITE_MAXIMO = 500
+
 while True:
 
     menu = input('''Bem vindo ao banco! Digite:
@@ -21,7 +17,7 @@ while True:
         valor = float(input('Qual valor deseja depositar? '))
         if valor >= 0.1:
             conta += valor
-            deposito_extrato += f"Depósito no valor de R$ {valor:.2f}\n"
+            extrato += f"Depósito no valor de R$ {valor:.2f}\n"
             print('Depósito realizado com sucesso!')
         else:
             print('O valor informado é inválido')
@@ -33,18 +29,17 @@ while True:
                 print('Saque realizado com sucesso')
                 conta -= valor
                 saques_diarios += 1
-                saque_extrato += f"Saque no valor de R$ {valor:.2f}\n"
+                extrato += f"Saque no valor de R$ {valor:.2f}\n"
             elif valor > LIMITE_MAXIMO:
                 print('Limite máximo de 500 reais por saque. Tente novamente.')
             elif conta - valor < 0:
                 print('Saldo insuficiente para saque')
         else:
             print('Limite de saques diários atingido.')
+            
     elif menu == 'e':
-      extrato = deposito_extrato + saque_extrato
       print('################## EXTRATO ##################')
-      print(f'Não foram realizadas movimentações.\n Saldo: R$ {conta:.2f}' if not extrato else extrato)
-      print(extrato)
+      print(f'Não foram realizadas movimentações.\nSaldo: R$ {conta:.2f}' if not extrato else f'{extrato}\nSaldo: R$ {conta:.2f}')
 
     elif menu == 'q':
         print('Obrigado por utilizar os serviços de nosso banco!')
