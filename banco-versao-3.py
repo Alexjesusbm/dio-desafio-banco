@@ -1,4 +1,5 @@
 import textwrap
+import datetime
 
 
 def menu():
@@ -20,7 +21,7 @@ def depositar(conta, valor, extrato, transacoes_diarias, /):
         valor = float(input("Informe o valor do depósito: "))
         if valor > 0:
             conta += valor
-            extrato += f"Depósito no valor de R$ {valor:.2f}\n"
+            extrato += f"Depósito no valor de R$ {valor:.2f}"
             print('Depósito realizado com sucesso!')
             transacoes_diarias += 1
         else:
@@ -51,9 +52,9 @@ def sacar(*, conta, valor, extrato, LIMITE_MAXIMO, saques_diarios, transacoes_di
     return conta, extrato, saques_diarios, transacoes_diarias
 
 
-def exibir_extrato(conta, /, *, extrato):     
+def exibir_extrato(conta,data_atual, /, *, extrato):     
     print('################## EXTRATO ##################')
-    print(f'Não foram realizadas movimentações.\nSaldo: R$ {conta:.2f}' if not extrato else f'{extrato}\nSaldo: R$ {conta:.2f}')   
+    print(f'Não foram realizadas movimentações.\nSaldo: R$ {conta:.2f}' if not extrato else (f'{extrato}\nData da transação:{data_atual}\nSaldo: R$ {conta:.2f}'))
 
 
 def criar_usuario(usuarios):
@@ -111,6 +112,7 @@ def main():
     usuarios = []
     contas = []
     valor = float
+    data_atual = datetime.datetime.now()
     while True:
         opcao = menu()
 
@@ -130,7 +132,7 @@ def main():
             )
 
         elif opcao == "e":
-            exibir_extrato(conta, extrato=extrato)
+            exibir_extrato(conta, data_atual, extrato=extrato)
 
         elif opcao == "nu":
             criar_usuario(usuarios)
